@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  myfuckingsql:
+  mysqll:
     build: ./mysql
     restart: always
     command: --default-authentication-plugin=mysql_native_password
@@ -8,7 +8,7 @@ services:
     volumes: 
     - db_data:/var/lib/mysql
     
-    container_name: myfuckingsql2
+    container_name: mysqll2
     
     environment:
       MYSQL_ROOT_PASSWORD: "toor"
@@ -21,7 +21,7 @@ services:
     command: sh -c "sleep 10s; python ./rss_reader.py"
     container_name: rss_reader2
     depends_on:
-      - myfuckingsql
+      - mysqll
 
 volumes:
   db_data: {}

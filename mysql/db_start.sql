@@ -7,7 +7,7 @@ crawled_at TIMESTAMP,published TIMESTAMP,sha VARCHAR(80),PRIMARY KEY(id));
 
 CREATE TABLE IF NOT EXISTS 
 news_agency(id INT NOT NULL,name VARCHAR(50) NOT NULL,rss_link VARCHAR(500),
-locked BOOLEAN,last_check TIMESTAMP ,PRIMARY KEY (id));
+locked BOOLEAN DEFAULT 0,last_check TIMESTAMP DEFAULT "2022-01-01 01:01:01" ,PRIMARY KEY (id));
 
         INSERT IGNORE INTO news_agency(id,name,rss_link) VALUES(5,'اعتماد','https://www.etemadonline.com/feeds/');
         INSERT IGNORE INTO news_agency(id,name,rss_link) VALUES(3,'فارس نیوز','https://www.farsnews.ir/rss');
