@@ -75,7 +75,7 @@ def refine_time(raw_time):
 
 
 db = mql.connect(
-    host="myfuckingsql",
+    host="mysqll",
     user="root",
     password="toor"
 )
@@ -100,7 +100,7 @@ while (True):
         is_locked=news_agency_link[3]
 
         last_check_temp=news_agency_link[2]
-        last_check=str(last_check_temp) #this code makes a last check time in format Y-M-D H:M:S
+        last_check=str(last_check_temp) #this code makes a last check time in format "Y-Mo-D H:Mi:S"
 
         news_agency_link_str = str(news_agency_link)
         news_agency_link_refined = re.sub("[',()]", "", news_agency_link_str)
@@ -142,8 +142,10 @@ while (True):
        
     while_counter+=1
     print("run time: ",while_counter,"\n still running...")
-    curs.execute("SELECT id,rss_link,last_check,locked from news_agency;")
+
+    curs.execute("SELECT id,rss_link,last_check,locked from news_agency;")#this line updates the last check info
     news_agencies = curs.fetchall()
+
     time.sleep(10)
 
 
