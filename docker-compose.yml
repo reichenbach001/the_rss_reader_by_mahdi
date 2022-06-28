@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  myfuckingsql:
+    build: ./mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+
+    volumes: 
+    - db_data:/var/lib/mysql
+    
+    container_name: myfuckingsql2
+    
+    environment:
+      MYSQL_ROOT_PASSWORD: "toor"
+      #MYSQL_USER: "for_docker"
+      MYSQL_PASSWORD: "toor"
+    ports:
+      - '3306:3306'
+  rss_reader:
+    build: ./rss/
+    command: sh -c "sleep 10s; python ./rss_reader.py"
+    container_name: rss_reader2
+    depends_on:
+      - myfuckingsql
+
+volumes:
+  db_data: {}

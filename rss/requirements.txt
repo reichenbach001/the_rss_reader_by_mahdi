@@ -1,0 +1,2 @@
+feedparser
+mysql_connector
